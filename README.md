@@ -9,8 +9,8 @@ from flat file structures with implicit hierarchy.
 [![Latest Stable Version](https://poser.pugx.org/rayne/wz2008-graph/v/stable)](https://packagist.org/packages/rayne/wz2008-graph)
 [![Latest Unstable Version](https://poser.pugx.org/rayne/wz2008-graph/v/unstable)](https://packagist.org/packages/rayne/wz2008-graph)
 [![Build Status](https://travis-ci.org/rayne/wz2008-graph.php.svg?branch=master)](https://travis-ci.org/rayne/wz2008-graph.php)
-[![Code Coverage](https://scrutinizer-ci.com/g/rayne/wz2008-graph.php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/rayne/wz2008-graph.php/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/rayne/wz2008-graph.php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/rayne/wz2008-graph.php/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/rayne/wz2008-graph/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/rayne/wz2008-graph.php/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/rayne/wz2008-graph/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/rayne/wz2008-graph.php/?branch=master)
 [![License](https://poser.pugx.org/rayne/wz2008-graph/license)](https://packagist.org/packages/rayne/wz2008-graph)
 
 ![Rayne/wz2008-graph builds a tree structure](./assets/cover-image.png "Rayne/wz2008-graph builds a tree structure")
