@@ -15,7 +15,7 @@ from flat file structures with implicit hierarchy.
 
 ![Rayne/wz2008-graph builds a tree structure](./assets/cover-image.png "Rayne/wz2008-graph builds a tree structure")
 
-([English documentation below.](#Setup))
+([English documentation below.](#setup))
 
 ## Paketbeschreibung (German)
 
@@ -94,7 +94,7 @@ Set the `@dev` stability flag to install the latest development version.
 
 Instead of using `Composer` it's also possible to use `GIT`
 as no third party project is required.
-Please have a look at the [Tests](#Tests) chapter.
+Please have a look at the [Tests](#tests) chapter.
 
 ## Data Set
 
@@ -110,7 +110,7 @@ Please have a look at the [Tests](#Tests) chapter.
 
 	3.	Extract the downloaded `ZIP` file
 
-2.	Proceed with the [Usage](#Usage) chapter
+2.	Proceed with the [Usage](#usage) chapter
 
 # Tests
 
