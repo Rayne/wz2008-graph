@@ -12,6 +12,7 @@ namespace Rayne\wz2008\Graph;
 use InvalidArgumentException;
 use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
+use Rayne\wz2008\Graph\Exception\InvalidParentException;
 
 class ItemTest extends TestCase
 {
@@ -82,13 +83,6 @@ class ItemTest extends TestCase
             5,
             $map['01.12']
         );
-
-        $map['A']->addChild($map['01']);
-        $map['01']->addChild($map['01.1']);
-        $map['01.1']->addChild($map['01.11']);
-        $map['01.1']->addChild($map['01.12']);
-        $map['01.11']->addChild($map['01.11.0']);
-        $map['01.12']->addChild($map['01.12.0']);
 
         return [[$map]];
     }
@@ -289,6 +283,8 @@ class ItemTest extends TestCase
             $parent
         );
 
+        $this->assertSame([$childA], $parent->getChildren());
+
         $childB = new Item(
             'B',
             [],
@@ -296,10 +292,24 @@ class ItemTest extends TestCase
             $parent
         );
 
-        $parent->addChild($childA);
-        $this->assertSame([$childA], $parent->getChildren());
-
-        $parent->addChild($childB);
         $this->assertSame([$childA, $childB], $parent->getChildren());
+
+        try {
+            $parent->addChild($parent);
+            $this->fail();
+        } catch (InvalidParentException $e) {
+            $this->assertSame(
+                'The parent of `P` is invalid. Expected `P` but got ``.',
+                $e->getMessage());
+        }
+
+        try {
+            $childA->addChild($childB);
+            $this->fail();
+        } catch (InvalidParentException $e) {
+            $this->assertSame(
+                'The parent of `B` is invalid. Expected `A` but got `P`.',
+                $e->getMessage());
+        }
     }
 }

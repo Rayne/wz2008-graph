@@ -10,6 +10,7 @@
 namespace Rayne\wz2008\Graph;
 
 use InvalidArgumentException;
+use Rayne\wz2008\Graph\Exception\InvalidParentException;
 
 interface ItemInterface
 {
@@ -51,6 +52,7 @@ interface ItemInterface
     /**
      * @param ItemInterface $child
      * @return $this
+     * @throws InvalidParentException When the child's parent isn't the current object.
      */
     public function addChild(ItemInterface $child);
 

@@ -52,10 +52,6 @@ class CompleteClassificationXml
                 $itemLevel,
                 $parent);
 
-            if ($parent) {
-                $parent->addChild($current);
-            }
-
             $this->records->add($current);
             $levels[$itemLevel] = $current;
         }

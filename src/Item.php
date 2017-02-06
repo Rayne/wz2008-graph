@@ -11,6 +11,7 @@ namespace Rayne\wz2008\Graph;
 
 use InvalidArgumentException;
 use OutOfBoundsException;
+use Rayne\wz2008\Graph\Exception\InvalidParentException;
 use SplQueue;
 
 class Item implements ItemInterface
@@ -52,6 +53,10 @@ class Item implements ItemInterface
         $this->labels = $labels;
         $this->level = (int) $level;
         $this->parent = $parent;
+
+        if ($parent) {
+            $parent->addChild($this);
+        }
     }
 
     /**
@@ -130,6 +135,14 @@ class Item implements ItemInterface
      */
     public function addChild(ItemInterface $child)
     {
+        if ($child->getParent() !== $this) {
+            throw new InvalidParentException(sprintf(
+                "The parent of `%s` is invalid. Expected `%s` but got `%s`.",
+                $child->getId(),
+                $this->getId(),
+                $child->getParent() ? $child->getParent()->getId() : ''));
+        }
+
         $this->children[] = $child;
         return $this;
     }

@@ -5,7 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org).
 
 ## [Unreleased]
 
-No notable changes.
+### Changed
+
+* `ItemInterface` objects add themselves as children to their parents
+* `ItemInterface` parents verify if they are the parent of their children
 
 ## 1.0.0-rc1 - 2017-02-05
 
