@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org).
 
 ## [Unreleased]
 
+### Added
+
+* `InvalidParentException`
+
 ### Changed
 
 * `ItemInterface` objects add themselves as children to their parents
