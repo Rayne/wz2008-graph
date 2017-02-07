@@ -10,17 +10,17 @@
 namespace Rayne\wz2008\Graph\Parser;
 
 use InvalidArgumentException;
-use Rayne\wz2008\Graph\ItemInterface;
+use Rayne\wz2008\Graph\WzItemInterface;
 use Rayne\wz2008\Graph\Test\AssetTestCase;
 
-class CompleteClassificationXmlFileTest extends AssetTestCase
+class WzClassificationFileTest extends AssetTestCase
 {
     /**
      * @expectedException InvalidArgumentException
      */
     public function testInvalidFile()
     {
-        new CompleteClassificationXmlFile(__DIR__);
+        new WzClassificationFile(__DIR__);
     }
 
     /**
@@ -28,14 +28,14 @@ class CompleteClassificationXmlFileTest extends AssetTestCase
      */
     public function testInvalidFileFormat()
     {
-        new CompleteClassificationXmlFile($this->getAssetFile('invalid.xml'));
+        new WzClassificationFile($this->getAssetFile('invalid.xml'));
     }
 
     public function testSize()
     {
         $file = $this->getAssetFile('WZ2008-2016-07-29-Classification_(complete).xml');
 
-        $parser = new CompleteClassificationXmlFile($file);
+        $parser = new WzClassificationFile($file);
 
         $this->assertCount(1835, $parser->getRecords());
     }
@@ -44,7 +44,7 @@ class CompleteClassificationXmlFileTest extends AssetTestCase
     {
         $file = $this->getAssetFile('WZ2008-2016-07-29-Classification_(complete).xml');
 
-        $parser = new CompleteClassificationXmlFile($file);
+        $parser = new WzClassificationFile($file);
 
         $t = $parser->getRecords()['74.10.2'];
 
@@ -60,7 +60,7 @@ class CompleteClassificationXmlFileTest extends AssetTestCase
     {
         $file = $this->getAssetFile('WZ2008-2016-07-29-Classification_(complete).xml');
 
-        $parser = new CompleteClassificationXmlFile($file);
+        $parser = new WzClassificationFile($file);
 
         $current = $parser->getRecords()['74.10'];
 
@@ -92,34 +92,34 @@ class CompleteClassificationXmlFileTest extends AssetTestCase
     {
         $file = $this->getAssetFile('WZ2008-2016-07-29-Classification_(complete).xml');
 
-        $parser = new CompleteClassificationXmlFile($file);
+        $parser = new WzClassificationFile($file);
 
         $t = $parser->getRecords()['74.10.2'];
 
         $this->assertSame('Grafik- und Kommunikationsdesign', $t->getLabel('de'));
         $this->assertSame(5, $t->getLevel());
 
-        $this->assertNull($t->getParentByLevel(ItemInterface::LEVEL_SUBCLASS));
+        $this->assertNull($t->getParentByLevel(WzItemInterface::LEVEL_SUBCLASS));
 
-        $p = $t->getParentByLevel(ItemInterface::LEVEL_CLASS);
+        $p = $t->getParentByLevel(WzItemInterface::LEVEL_CLASS);
 
         $this->assertSame('74.10', $p->getId());
         $this->assertSame(4, $p->getLevel());
         $this->assertSame('Ateliers für Textil-, Schmuck-, Grafik- u. ä. Design', $p->getLabel('de'));
 
-        $p = $t->getParentByLevel(ItemInterface::LEVEL_GROUP);
+        $p = $t->getParentByLevel(WzItemInterface::LEVEL_GROUP);
 
         $this->assertSame('74.1', $p->getId());
         $this->assertSame(3, $p->getLevel());
         $this->assertSame('Ateliers für Textil-, Schmuck-, Grafik- u. ä. Design', $p->getLabel('de'));
 
-        $p = $t->getParentByLevel(ItemInterface::LEVEL_DIVISION);
+        $p = $t->getParentByLevel(WzItemInterface::LEVEL_DIVISION);
 
         $this->assertSame('74', $p->getId());
         $this->assertSame(2, $p->getLevel());
         $this->assertSame('Sonstige freiberufliche, wissenschaftliche und technische Tätigkeiten', $p->getLabel('de'));
 
-        $p = $t->getParentByLevel(ItemInterface::LEVEL_SECTION);
+        $p = $t->getParentByLevel(WzItemInterface::LEVEL_SECTION);
 
         $this->assertSame('M', $p->getId());
         $this->assertSame(1, $p->getLevel());

@@ -14,10 +14,10 @@ use OutOfBoundsException;
 use Rayne\wz2008\Graph\Exception\InvalidParentException;
 use SplQueue;
 
-class Item implements ItemInterface
+class WzItem implements WzItemInterface
 {
     /**
-     * @var ItemInterface[]
+     * @var WzItemInterface[]
      */
     private $children = [];
 
@@ -37,7 +37,7 @@ class Item implements ItemInterface
     private $level;
 
     /**
-     * @var ItemInterface|null
+     * @var WzItemInterface|null
      */
     private $parent;
 
@@ -45,9 +45,9 @@ class Item implements ItemInterface
      * @param string $id
      * @param string[] $labels `Language Code => Translated Label` map.
      * @param int $level
-     * @param ItemInterface|null $parent
+     * @param WzItemInterface|null $parent
      */
-    public function __construct($id, array $labels, $level, ItemInterface $parent = null)
+    public function __construct($id, array $labels, $level, WzItemInterface $parent = null)
     {
         $this->id = $id;
         $this->labels = $labels;
@@ -133,7 +133,7 @@ class Item implements ItemInterface
     /**
      * @inheritdoc
      */
-    public function addChild(ItemInterface $child)
+    public function addChild(WzItemInterface $child)
     {
         if ($child->getParent() !== $this) {
             throw new InvalidParentException(sprintf(
@@ -174,7 +174,7 @@ class Item implements ItemInterface
         $queue->enqueue($this);
 
         while (!$queue->isEmpty()) {
-            /* @var ItemInterface $item */
+            /* @var WzItemInterface $item */
             $item = $queue->dequeue();
 
             if ($item->getLevel() == $level) {

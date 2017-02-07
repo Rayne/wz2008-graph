@@ -132,14 +132,14 @@ Please have a look at the [Tests](#tests) chapter.
 
 ```php
 $file = 'WZ2008-2016-07-29-Classification_(complete).xml';
-$parser = new CompleteClassificationXmlFile($file);
+$parser = new WzClassificationFile($file);
 
 /**
- * The parser result is an `ItemManager`.
- * It behaves like a specialized `ItemInterface[]` array
+ * The parser result is an `WzItemCollection`.
+ * It behaves like a specialized `WzItemInterface[]` array
  * with some additional methods.
  *
- * @var ItemManager|ItemInterface[] $record
+ * @var WzItemCollection|WzItemInterface[] $record
  */
 $records = $parser->getRecords();
 ```
@@ -149,9 +149,9 @@ $records = $parser->getRecords();
 ```php
 $id = '26.20.0';
 
-/* @var ItemManager $records */
+/* @var WzItemCollection $records */
 if ($records->has($id)) {
-    /* @var ItemInterface $record */
+    /* @var WzItemInterface $record */
     $record = $records->get($id);
 }
 ```
@@ -159,47 +159,47 @@ if ($records->has($id)) {
 It's also possible to access the records like array values.
 
 ```php
-/* @var ItemManager $records */
+/* @var WzItemCollection $records */
 $record = $records['26.20.0'];
 ```
 
 ## Read Record ID
 
 ```php
-/* @var ItemInterface $record */
+/* @var WzItemInterface $record */
 $record->getId();
 ```
 
 ## Traverse Records
 
 It's possible to traverse parents and children
-relative to a given `ItemInterface` object.
+relative to a given `WzItemInterface` object.
 Every item has a hierarchy level between `1` and `5`.
-`ItemInterface` provides the following human readable constants.
+`WzItemInterface` provides the following human readable constants.
 
 | DE          | EN       | Level | Constant                        |
 |-------------|----------|-------|---------------------------------|
-| Abschnitt   | Section  | 1     | `ItemInterface::LEVEL_SECTION`  |
-| Abteilung   | Division | 2     | `ItemInterface::LEVEL_DIVISION` |
-| Gruppe      | Group    | 3     | `ItemInterface::LEVEL_GROUP`    |
-| Klasse      | Class    | 4     | `ItemInterface::LEVEL_CLASS`    |
-| Unterklasse | Subclass | 5     | `ItemInterface::LEVEL_SUBCLASS` |
+| Abschnitt   | Section  | 1     | `WzItemInterface::LEVEL_SECTION`  |
+| Abteilung   | Division | 2     | `WzItemInterface::LEVEL_DIVISION` |
+| Gruppe      | Group    | 3     | `WzItemInterface::LEVEL_GROUP`    |
+| Klasse      | Class    | 4     | `WzItemInterface::LEVEL_CLASS`    |
+| Unterklasse | Subclass | 5     | `WzItemInterface::LEVEL_SUBCLASS` |
 
 ### Traverse Parents
 
 Fetch the direct parent or traverse one level up.
 
 ```php
-/* @var ItemInterface $record */
-/* @var ItemInterface|null $parent */
+/* @var WzItemInterface $record */
+/* @var WzItemInterface|null $parent */
 $parent = $record->getParent();
 ```
 
 Fetch the parent on a specific level or move up to a specific level.
 
 ```php
-/* @var ItemInterface $record */
-/* @var ItemInterface|null $parent */
+/* @var WzItemInterface $record */
+/* @var WzItemInterface|null $parent */
 $parent = $record->getParent($record::LEVEL_SECTION);
 ```
 
@@ -208,8 +208,8 @@ $parent = $record->getParent($record::LEVEL_SECTION);
 Fetch all direct children.
 
 ```php
-/* @var ItemInterface $record */
-/* @var ItemInterface[] $children */
+/* @var WzItemInterface $record */
+/* @var WzItemInterface[] $children */
 $children = $record->getChildren();
 ```
 
@@ -217,21 +217,21 @@ Fetch all children by a specific level.
 Children on other levels are skipped.
 
 ```php
-/* @var ItemInterface $record */
-/* @var ItemInterface[] $children */
+/* @var WzItemInterface $record */
+/* @var WzItemInterface[] $children */
 $children = $record->getChildrenByLevel($record::LEVEL_CLASS);
 ```
 
 ## Get translated Labels
 
-`ItemInterface` throws an `InvalidArgumentException`
+`WzItemInterface` throws an `InvalidArgumentException`
 when there isn't a translation for the given language code.
 The official XML files are limited to `DE` and `EN`.
 
-The `$langCode` of `ItemInterface->getLabel($langCode)` is case-insensitive.
+The `$langCode` of `WzItemInterface->getLabel($langCode)` is case-insensitive.
 
 ```php
-/* @var ItemInterface $record */
+/* @var WzItemInterface $record */
 /* @var string $label */
 $label = $record->getLabel('de');
 ```
@@ -239,12 +239,12 @@ $label = $record->getLabel('de');
 Get all translated labels and their language codes.
 
 ```php
-/* @var ItemInterface $record */
+/* @var WzItemInterface $record */
 /* @var string[] $labels */
 $labels = $record->getLabels();
 ```
 
-`ItemInterface->getLabels()` returns simple
+`WzItemInterface->getLabels()` returns simple
 key (language code)
 value (translated label)
 maps.
@@ -261,8 +261,8 @@ $labels = [
 Filter all records by level.
 
 ```php
-/* @var ItemManager $records */
-/* @var ItemInterface[] $sections */
-$sections = $records->getItemsByLevel(ItemInterface::LEVEL_SECTION);
+/* @var WzItemCollection $records */
+/* @var WzItemInterface[] $sections */
+$sections = $records->getItemsByLevel(WzItemInterface::LEVEL_SECTION);
 $sections = $records->getItemsByLevel(1);
 ```

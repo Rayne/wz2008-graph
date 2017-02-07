@@ -11,7 +11,7 @@ namespace Rayne\wz2008\Graph\Parser;
 
 use InvalidArgumentException;
 
-class CompleteClassificationXmlFile extends CompleteClassificationXml
+class WzClassificationFile extends WzClassification
 {
     /**
      * @param string $xmlFile

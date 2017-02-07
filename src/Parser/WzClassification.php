@@ -9,16 +9,16 @@
 
 namespace Rayne\wz2008\Graph\Parser;
 
-use Rayne\wz2008\Graph\Item;
-use Rayne\wz2008\Graph\ItemInterface;
-use Rayne\wz2008\Graph\ItemManager;
-use Rayne\wz2008\Graph\ItemManagerInterface;
+use Rayne\wz2008\Graph\WzItem;
+use Rayne\wz2008\Graph\WzItemInterface;
+use Rayne\wz2008\Graph\WzItemCollection;
+use Rayne\wz2008\Graph\WzItemCollectionInterface;
 use SimpleXMLElement;
 
-class CompleteClassificationXml
+class WzClassification
 {
     /**
-     * @var ItemManagerInterface
+     * @var WzItemCollectionInterface
      */
     private $records;
 
@@ -27,18 +27,18 @@ class CompleteClassificationXml
      */
     public function __construct(SimpleXMLElement $xml)
     {
-        $this->records = new ItemManager;
+        $this->records = new WzItemCollection;
 
         /**
-         * @var Item[]|null[] $levels
+         * @var WzItem[]|null[] $levels
          */
         $levels = [
             0 => null,
-            Item::LEVEL_SECTION => null,
-            Item::LEVEL_DIVISION => null,
-            Item::LEVEL_GROUP => null,
-            Item::LEVEL_CLASS => null,
-            Item::LEVEL_SUBCLASS => null,
+            WzItem::LEVEL_SECTION => null,
+            WzItem::LEVEL_DIVISION => null,
+            WzItem::LEVEL_GROUP => null,
+            WzItem::LEVEL_CLASS => null,
+            WzItem::LEVEL_SUBCLASS => null,
         ];
 
         foreach ($xml->xpath('//Item') as $xmlItem) {
@@ -46,7 +46,7 @@ class CompleteClassificationXml
             $itemLevel = (int) $xmlItem['idLevel'];
 
             $parent = $levels[$itemLevel - 1];
-            $current = new Item(
+            $current = new WzItem(
                 $itemId,
                 $this->buildLabels($xmlItem),
                 $itemLevel,
@@ -73,7 +73,7 @@ class CompleteClassificationXml
     }
 
     /**
-     * @return ItemManagerInterface|ItemInterface[] `ID` to `Item` map.
+     * @return WzItemCollectionInterface|WzItemInterface[] `ID` to `WzItem` map.
      */
     public function getRecords()
     {

@@ -12,7 +12,7 @@ namespace Rayne\wz2008\Graph;
 use InvalidArgumentException;
 use Rayne\wz2008\Graph\Exception\InvalidParentException;
 
-interface ItemInterface
+interface WzItemInterface
 {
     /**
      * Code for german labels and messages.
@@ -50,20 +50,20 @@ interface ItemInterface
     const LEVEL_SUBCLASS = 5;
 
     /**
-     * @param ItemInterface $child
+     * @param WzItemInterface $child
      * @return $this
      * @throws InvalidParentException When the child's parent isn't the current object.
      */
-    public function addChild(ItemInterface $child);
+    public function addChild(WzItemInterface $child);
 
     /**
-     * @return ItemInterface[]
+     * @return WzItemInterface[]
      */
     public function getChildren();
 
     /**
      * @param int $level
-     * @return ItemInterface[]
+     * @return WzItemInterface[]
      */
     public function getChildrenByLevel($level);
 
@@ -90,13 +90,13 @@ interface ItemInterface
     public function getLevel();
 
     /**
-     * @return null|ItemInterface
+     * @return null|WzItemInterface
      */
     public function getParent();
 
     /**
      * @param int $level
-     * @return null|ItemInterface
+     * @return null|WzItemInterface
      */
     public function getParentByLevel($level);
 }

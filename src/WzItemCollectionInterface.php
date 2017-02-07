@@ -14,26 +14,26 @@ use Countable;
 use InvalidArgumentException;
 
 /**
- * This `ArrayAccess` implementation only allows `ItemInterface` values.
- * The keys have to match their item value IDs (`ItemInterface->getId()`).
+ * This `ArrayAccess` implementation only allows `WzItemInterface` values.
+ * The keys have to match their item value IDs (`WzItemInterface->getId()`).
  */
-interface ItemManagerInterface extends ArrayAccess, Countable
+interface WzItemCollectionInterface extends ArrayAccess, Countable
 {
     /**
-     * @param ItemInterface $item
+     * @param WzItemInterface $item
      * @return $this
      */
-    public function add(ItemInterface $item);
+    public function add(WzItemInterface $item);
 
     /**
      * @param string $id
-     * @return null|ItemInterface The item with ID `$id`.
+     * @return null|WzItemInterface The item with ID `$id`.
      */
     public function get($id);
 
     /**
      * @param int $level
-     * @return ItemInterface[]
+     * @return WzItemInterface[]
      */
     public function getItemsByLevel($level);
 
@@ -45,7 +45,7 @@ interface ItemManagerInterface extends ArrayAccess, Countable
 
     /**
      * @inheritdoc
-     * @throws InvalidArgumentException On non `ItemInterface` values or mismatching indices.
+     * @throws InvalidArgumentException On non-`WzItemInterface` values or mismatching indices.
      */
     public function offsetSet($index, $newval);
 }

@@ -14,7 +14,7 @@ use OutOfBoundsException;
 use PHPUnit\Framework\TestCase;
 use Rayne\wz2008\Graph\Exception\InvalidParentException;
 
-class ItemTest extends TestCase
+class WzItemTest extends TestCase
 {
     /**
      * Provides the following map:
@@ -35,49 +35,49 @@ class ItemTest extends TestCase
     {
         $map = [];
 
-        $map['A'] = new Item(
+        $map['A'] = new WzItem(
             'A',
             ['de' => 'Land- und Forstwirtschaft, Fischerei'],
             1,
             null
         );
 
-        $map['01'] = new Item(
+        $map['01'] = new WzItem(
             '01',
             ['de' => 'Landwirtschaft, Jagd und damit verbundene Tätigkeiten'],
             2,
             $map['A']
         );
 
-        $map['01.1'] = new Item(
+        $map['01.1'] = new WzItem(
             '01.1',
             ['de' => 'Anbau einjähriger Pflanzen'],
             3,
             $map['01']
         );
 
-        $map['01.11'] = new Item(
+        $map['01.11'] = new WzItem(
             '01.11',
             ['de' => 'Anbau von Getreide (ohne Reis), Hülsenfrüchten und Ölsaaten'],
             4,
             $map['01.1']
         );
 
-        $map['01.11.0'] = new Item(
+        $map['01.11.0'] = new WzItem(
             '01.11.0',
             ['de' => 'Anbau von Getreide (ohne Reis), Hülsenfrüchten und Ölsaaten'],
             5,
             $map['01.11']
         );
 
-        $map['01.12'] = new Item(
+        $map['01.12'] = new WzItem(
             '01.12',
             ['de' => 'Anbau von Reis'],
             4,
             $map['01.1']
         );
 
-        $map['01.12.0'] = new Item(
+        $map['01.12.0'] = new WzItem(
             '01.12.0',
             ['de' => 'Anbau von Reis'],
             5,
@@ -89,7 +89,7 @@ class ItemTest extends TestCase
 
     /**
      * @dataProvider provideMap
-     * @param Item[] $map
+     * @param WzItem[] $map
      */
     public function testParentFunctions(array $map)
     {
@@ -135,7 +135,7 @@ class ItemTest extends TestCase
 
     /**
      * @dataProvider provideMap
-     * @param Item[] $map
+     * @param WzItem[] $map
      */
     public function testChildrenFunctions(array $map)
     {
@@ -178,7 +178,7 @@ class ItemTest extends TestCase
 
     public function testChildrenOutOfBounds()
     {
-        $item = new Item(
+        $item = new WzItem(
             'A',
             [],
             1,
@@ -202,7 +202,7 @@ class ItemTest extends TestCase
 
     public function testParentOutOfBounds()
     {
-        $item = new Item(
+        $item = new WzItem(
             'A',
             [],
             1,
@@ -226,7 +226,7 @@ class ItemTest extends TestCase
 
     public function testId()
     {
-        $this->assertSame('A', (new Item(
+        $this->assertSame('A', (new WzItem(
             'A',
             [],
             1,
@@ -236,7 +236,7 @@ class ItemTest extends TestCase
 
     public function testLabel()
     {
-        $item = new Item(
+        $item = new WzItem(
             'A',
             [
                 'de' => 'Hallo Welt',
@@ -269,14 +269,14 @@ class ItemTest extends TestCase
 
     public function testAddChild()
     {
-        $parent = new Item(
+        $parent = new WzItem(
             'P',
             [],
             1,
             null
         );
 
-        $childA = new Item(
+        $childA = new WzItem(
             'A',
             [],
             2,
@@ -285,7 +285,7 @@ class ItemTest extends TestCase
 
         $this->assertSame([$childA], $parent->getChildren());
 
-        $childB = new Item(
+        $childB = new WzItem(
             'B',
             [],
             2,

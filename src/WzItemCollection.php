@@ -12,7 +12,7 @@ namespace Rayne\wz2008\Graph;
 use ArrayObject;
 use InvalidArgumentException;
 
-class ItemManager extends ArrayObject implements ItemManagerInterface
+class WzItemCollection extends ArrayObject implements WzItemCollectionInterface
 {
     /**
      *
@@ -25,7 +25,7 @@ class ItemManager extends ArrayObject implements ItemManagerInterface
     /**
      * @inheritdoc
      */
-    public function add(ItemInterface $item)
+    public function add(WzItemInterface $item)
     {
         $this[$item->getId()] = $item;
     }
@@ -46,7 +46,7 @@ class ItemManager extends ArrayObject implements ItemManagerInterface
         return array_merge(
             array_filter(
                 $this->getArrayCopy(),
-                function (ItemInterface $item) use ($level) {
+                function (WzItemInterface $item) use ($level) {
                     return $item->getLevel() == $level;
                 }));
     }
@@ -64,15 +64,15 @@ class ItemManager extends ArrayObject implements ItemManagerInterface
      */
     public function offsetSet($index, $newval)
     {
-        if (!$newval instanceof ItemInterface) {
-            throw new InvalidArgumentException(sprintf('Only `%s` objects allowed.', ItemInterface::class));
+        if (!$newval instanceof WzItemInterface) {
+            throw new InvalidArgumentException(sprintf('Only `%s` objects allowed.', WzItemInterface::class));
         }
 
         if ($index !== $newval->getId()) {
             throw new InvalidArgumentException(sprintf(
                 "Key `%s` doesn't match `%s->getId()`: `%s`.",
                 $index,
-                ItemInterface::class,
+                WzItemInterface::class,
                 $newval->getId()));
         }
 

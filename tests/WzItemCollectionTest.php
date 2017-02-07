@@ -12,12 +12,12 @@ namespace Rayne\wz2008\Graph;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-class ItemManagerTest extends TestCase
+class WzItemCollectionTest extends TestCase
 {
     public function test()
     {
-        $manager = new ItemManager;
-        $item = new Item('item', [], 1, null);
+        $manager = new WzItemCollection;
+        $item = new WzItem('item', [], 1, null);
 
         $this->assertFalse($manager->has($item->getId()));
         $this->assertNull($manager->get($item->getId()));
@@ -32,12 +32,12 @@ class ItemManagerTest extends TestCase
     public function testInvalidValue()
     {
         try {
-            $manager = new ItemManager;
+            $manager = new WzItemCollection;
             $manager['A'] = 'INVALID';
             $this->fail();
         } catch (InvalidArgumentException $e) {
             $this->assertSame(
-                'Only `Rayne\wz2008\Graph\ItemInterface` objects allowed.',
+                'Only `Rayne\wz2008\Graph\WzItemInterface` objects allowed.',
                 $e->getMessage());
         }
     }
@@ -45,25 +45,25 @@ class ItemManagerTest extends TestCase
     public function testInvalidKey()
     {
         try {
-            $manager = new ItemManager;
-            $manager['Z'] = (new Item('A', [], 1, null));
+            $manager = new WzItemCollection;
+            $manager['Z'] = (new WzItem('A', [], 1, null));
             $this->fail();
         } catch (InvalidArgumentException $e) {
             $this->assertSame(
-                'Key `Z` doesn\'t match `Rayne\wz2008\Graph\ItemInterface->getId()`: `A`.',
+                'Key `Z` doesn\'t match `Rayne\wz2008\Graph\WzItemInterface->getId()`: `A`.',
                 $e->getMessage());
         }
     }
 
     public function testGetItemsByLevel()
     {
-        $manager = new ItemManager;
+        $manager = new WzItemCollection;
 
-        $manager->add(new Item('1', [], 1, null));
-        $manager->add(new Item('11', [], 2, $manager['1']));
-        $manager->add(new Item('12', [], 2, $manager['1']));
-        $manager->add(new Item('121', [], 3, $manager['12']));
-        $manager->add(new Item('13', [], 2, $manager['1']));
+        $manager->add(new WzItem('1', [], 1, null));
+        $manager->add(new WzItem('11', [], 2, $manager['1']));
+        $manager->add(new WzItem('12', [], 2, $manager['1']));
+        $manager->add(new WzItem('121', [], 3, $manager['12']));
+        $manager->add(new WzItem('13', [], 2, $manager['1']));
 
         $this->assertSame([
             $manager['1'],
