@@ -13,11 +13,25 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Don't use this class except when writing unit tests depending on assets.
+ *
+ * @codeCoverageIgnore
  */
-class AssetTestCase extends TestCase
+abstract class AssetTestCase extends TestCase
 {
+    /**
+     * @return string
+     */
+    protected function getAssetDirectory()
+    {
+        return dirname(dirname(__DIR__)) . '/assets';
+    }
+
+    /**
+     * @param string $file
+     * @return string
+     */
     protected function getAssetFile($file)
     {
-        return dirname(dirname(__DIR__)) . '/assets/' . $file;
+        return $this->getAssetDirectory() . '/' . $file;
     }
 }

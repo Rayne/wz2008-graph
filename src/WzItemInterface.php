@@ -10,6 +10,7 @@
 namespace Rayne\wz2008\Graph;
 
 use InvalidArgumentException;
+use OutOfBoundsException;
 use Rayne\wz2008\Graph\Exception\InvalidParentException;
 
 interface WzItemInterface
@@ -97,6 +98,7 @@ interface WzItemInterface
     /**
      * @param int $level
      * @return null|WzItemInterface
+     * @throws OutOfBoundsException
      */
     public function getParentByLevel($level);
 }

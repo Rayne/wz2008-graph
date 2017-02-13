@@ -23,22 +23,8 @@ Diese Bibliothek extrahiert die implizit vorliegende hierarchische Branchen-Stru
 aus der *Klassifikation der Wirtschaftszweige, Ausgabe 2008 (WZ 2008)*.
 Als Daten-Grundlage wird die vollständige Klassifikation als XML-Datei genutzt.
 
-Die jeweils aktuelle XML-Datei ist nicht Teil der Bibliothek
-und muss zuvor vom
-[Klassifikationsserver](https://www.klassifikationsserver.de/klassService/index.jsp?variant=wz2008)
-heruntergeladen werden.
-Der relevante Download ist etwa 1 MB groß
-und befindet sich in der
-[Download-Matrix](https://www.klassifikationsserver.de/klassService/index.jsp?variant=wz2008)
-an folgender Position:
-
-```
-("Klassifikation komplett", "XML (Claset)")
-```
-
-Die Unit-Tests nutzen zur Zeit die Version vom `29.07.2016 12:15:37 (GMT+0200)`.
-Die Test-Datei wird nur dann aktualisiert, wenn es für die Tests notwendig ist.
-Sie befindet sich in `/assets/WZ2008-2016-07-29-Classification_(complete).xml`.
+Die jeweils neuste Version liegt der Bibliothek bei.
+Bei Bedarf kann auch eine eigene Version geladen werden.
 
 > Die Klassifikation der Wirtschaftszweige, Ausgabe 2008 (WZ 2008), wurde unter intensiver Beteiligung von Datennutzern und Datenproduzenten in Verwaltung, Wirtschaft, Forschung und Gesellschaft geschaffen und dient dazu, die wirtschaftlichen Tätigkeiten von Unternehmen, Betrieben und anderen statistischen Einheiten in allen amtlichen Statistiken einheitlich zu erfassen. Sie berücksichtigt die Vorgaben der statistischen Systematik der Wirtschaftszweige in der Europäischen Gemeinschaft (NACE Rev. 2), die mit der Verordnung (EG) Nr. 1893/2006 des Europäischen Parlaments und des Rates vom 20. Dezember 2006 (ABl. EG Nr. L 393 S. 1) veröffentlicht wurde und auf der International Standard Industrial Classification (ISIC Rev. 4) der Vereinten Nationen basiert. Die Zustimmung der Europäischen Kommission gemäß Artikel 4, Absatz 3, der oben genannten Verordnung liegt vor. 
 >
@@ -46,26 +32,24 @@ Sie befindet sich in `/assets/WZ2008-2016-07-29-Classification_(complete).xml`.
 >
 > Quelle: https://www.klassifikationsserver.de/klassService/index.jsp?variant=wz2008
 
-# Dependencies
+## Dependencies
 
-## Production
+### Production
 
 * PHP 5.6 or better
 
-## Development
+### Development
 
 * Composer
 * Git
 * PHPUnit
 
-# Licence
+## Licence
 
 * The library is published under the [MIT licence](LICENSE).
 
-* The test file `/assets/WZ2008-2016-07-29-Classification_(complete).xml`
-  is intellectual property of the
-  *Statistisches Bundesamt (Federal Statistical Office), Wiesbaden, Section „Classifications“*
-  and only required for running the unit tests.
+* The shipped `/assets/WZ2008-[…].xml` file is intellectual property of the
+  *Statistisches Bundesamt (Federal Statistical Office), Wiesbaden, Section „Classifications“*.
 
   ```
   File content: Classification (complete)
@@ -75,151 +59,161 @@ Sie befindet sich in `/assets/WZ2008-2016-07-29-Classification_(complete).xml`.
   Type: 'ex' = Part of (see help of the classification server)
   ```
 
-# Setup
-
-After installing the library it's necessary to locate
-and download the correct XML data set.
-
-## Library (Composer)
+## Setup
 
 [Download Composer](https://getcomposer.org/download) and install `rayne/wz2008-graph`.
 
-	composer require rayne/wz2008-graph ~1.0
-
-Set the `@dev` stability flag to install the latest development version.
-
-	composer require rayne/wz2008-graph @dev
-
-## Library (GIT)
-
-Instead of using `Composer` it's also possible to use `GIT`
-as no third party project is required.
-Please have a look at the [Tests](#tests) chapter.
-
-## Data Set
-
-1.	Download the `WZ2008-20XX-XX-XX-Classification_(complete).xml` file
-
-	1.	Visit [klassifikationsserver.de/klassService/index.jsp?variant=wz2008](https://klassifikationsserver.de/klassService/index.jsp?variant=wz2008)
-
-	2.	Locate the `ZIP` download in the download matrix at position
- 
-		```
-		("Klassifikation komplett", "XML (Claset)")
-		```
-
-	3.	Extract the downloaded `ZIP` file
-
-2.	Proceed with the [Usage](#usage) chapter
-
-# Tests
-
-1.	Clone the repository
-
-		git clone https://github.com/rayne/wz2008-graph.git
-
-2.	Install the development dependencies
-
-		composer install --dev
-
-3.	Run the tests
- 
-		./vendor/bin/phpunit
-
-# Usage
-
-## Build hierarchical Records
-
-```php
-$file = 'WZ2008-2016-07-29-Classification_(complete).xml';
-$parser = new WzClassificationFile($file);
-
-/**
- * The parser result is an `WzItemCollection`.
- * It behaves like a specialized `WzItemInterface[]` array
- * with some additional methods.
- *
- * @var WzItemCollection|WzItemInterface[] $record
- */
-$records = $parser->getRecords();
+```bash
+composer require rayne/wz2008-graph
 ```
 
-## Search Record by ID
+*Alternatives*
+
+* Clone the repository (see the [Tests](#tests) chapter)
+* Download a [zipped release](https://github.com/Rayne/wz2008-graph/releases)
+
+## Tests
+
+1.  Clone the repository
+
+    ```bash
+    git clone https://github.com/rayne/wz2008-graph.git
+    ```
+
+2.  Install the development dependencies
+
+    ```bash
+    composer install --dev
+    ```
+
+3.  Run the tests
+
+    ```bash
+    ./vendor/bin/phpunit
+    ```
+
+## Usage
 
 ```php
+use Rayne\wz2008\Graph\Factory\WzClassificationFactory;
+use Rayne\wz2008\Graph\WzClassificationInterface;
+
+/**
+ * @var WzClassificationInterface $classification
+ */
+
+// Load the library's classification file …
+$classification = WzClassificationFactory::build();
+
+// … or load a custom classification file.
+$classification = WzClassificationFactory::buildFromFile(
+    'WZ2008-2016-07-29-Classification_(complete).xml');
+```
+
+### Search WzItem by ID
+
+```php
+use Rayne\wz2008\Graph\WzClassificationInterface;
+use Rayne\wz2008\Graph\WzItemInterface;
+
+/**
+ * @var WzClassificationInterface $classification
+ * @var WzItemInterface $item
+ */
+
 $id = '26.20.0';
 
-/* @var WzItemCollection $records */
-if ($records->has($id)) {
-    /* @var WzItemInterface $record */
-    $record = $records->get($id);
+if ($classification->has($id)) {
+    $item = $classification->get($id);
 }
 ```
 
-It's also possible to access the records like array values.
-
-```php
-/* @var WzItemCollection $records */
-$record = $records['26.20.0'];
-```
-
-## Read Record ID
-
-```php
-/* @var WzItemInterface $record */
-$record->getId();
-```
-
-## Traverse Records
+### Traverse WzItems
 
 It's possible to traverse parents and children
 relative to a given `WzItemInterface` object.
 Every item has a hierarchy level between `1` and `5`.
 `WzItemInterface` provides the following human readable constants.
 
-| DE          | EN       | Level | Constant                        |
-|-------------|----------|-------|---------------------------------|
+| DE          | EN       | Level | Constant                          |
+|-------------|----------|-------|-----------------------------------|
 | Abschnitt   | Section  | 1     | `WzItemInterface::LEVEL_SECTION`  |
 | Abteilung   | Division | 2     | `WzItemInterface::LEVEL_DIVISION` |
 | Gruppe      | Group    | 3     | `WzItemInterface::LEVEL_GROUP`    |
 | Klasse      | Class    | 4     | `WzItemInterface::LEVEL_CLASS`    |
 | Unterklasse | Subclass | 5     | `WzItemInterface::LEVEL_SUBCLASS` |
 
-### Traverse Parents
+#### Traverse Parents
 
 Fetch the direct parent or traverse one level up.
 
 ```php
-/* @var WzItemInterface $record */
-/* @var WzItemInterface|null $parent */
-$parent = $record->getParent();
+use Rayne\wz2008\Graph\WzItemInterface;
+
+/**
+ * @var WzItemInterface $item
+ * @var WzItemInterface|null $parent
+ */
+
+$parent = $item->getParent();
 ```
 
 Fetch the parent on a specific level or move up to a specific level.
 
 ```php
-/* @var WzItemInterface $record */
-/* @var WzItemInterface|null $parent */
-$parent = $record->getParent($record::LEVEL_SECTION);
+use Rayne\wz2008\Graph\WzItemInterface;
+
+/**
+ * @var WzItemInterface $item
+ * @var WzItemInterface|null $parent
+ */
+
+$parent = $item->getParentByLevel($item::LEVEL_SECTION);
 ```
 
-### Traverse Children
+#### Traverse Children
 
 Fetch all direct children.
 
 ```php
-/* @var WzItemInterface $record */
-/* @var WzItemInterface[] $children */
-$children = $record->getChildren();
+use Rayne\wz2008\Graph\WzItemInterface;
+
+/**
+ * @var WzItemInterface $item
+ * @var WzItemInterface[] $children
+ */
+
+$children = $item->getChildren();
 ```
 
 Fetch all children by a specific level.
 Children on other levels are skipped.
 
 ```php
-/* @var WzItemInterface $record */
-/* @var WzItemInterface[] $children */
-$children = $record->getChildrenByLevel($record::LEVEL_CLASS);
+use Rayne\wz2008\Graph\WzItemInterface;
+
+/**
+ * @var WzItemInterface $item
+ * @var WzItemInterface[] $children
+ */
+
+$children = $item->getChildrenByLevel($item::LEVEL_CLASS);
+```
+
+## Filter WzItems by Level
+
+Get all `WzItemInterface` items with a specific level.
+
+```php
+use Rayne\wz2008\Graph\WzClassificationInterface;
+use Rayne\wz2008\Graph\WzItemInterface;
+
+/**
+ * @var WzClassificationInterface $classification 
+ * @var WzItemInterface[] $sections
+ */
+
+$sections = $classification->getItemsByLevel(WzItemInterface::LEVEL_SECTION);
 ```
 
 ## Get translated Labels
@@ -231,17 +225,27 @@ The official XML files are limited to `DE` and `EN`.
 The `$langCode` of `WzItemInterface->getLabel($langCode)` is case-insensitive.
 
 ```php
-/* @var WzItemInterface $record */
-/* @var string $label */
-$label = $record->getLabel('de');
+use Rayne\wz2008\Graph\WzItemInterface;
+
+/**
+ * @var WzItemInterface $item
+ * @var string $label
+ */
+
+$label = $item->getLabel('de');
 ```
 
 Get all translated labels and their language codes.
 
 ```php
-/* @var WzItemInterface $record */
-/* @var string[] $labels */
-$labels = $record->getLabels();
+use Rayne\wz2008\Graph\WzItemInterface;
+
+/**
+ * @var WzItemInterface $item
+ * @var string[] $labels
+ */
+
+$labels = $item->getLabels();
 ```
 
 `WzItemInterface->getLabels()` returns simple
@@ -256,13 +260,55 @@ $labels = [
 ];
 ```
 
-## Get all Records by Level
-
-Filter all records by level.
+### Get WzItem ID
 
 ```php
-/* @var WzItemCollection $records */
-/* @var WzItemInterface[] $sections */
-$sections = $records->getItemsByLevel(WzItemInterface::LEVEL_SECTION);
-$sections = $records->getItemsByLevel(1);
+use Rayne\wz2008\Graph\WzItemInterface;
+
+/**
+ * @var WzItemInterface $item
+ */
+
+$item->getId();
 ```
+
+### Get WzItem Level
+
+```php
+use Rayne\wz2008\Graph\WzItemInterface;
+
+/**
+ * @var WzItemInterface $item
+ */
+
+$item->getLevel();
+```
+
+## Custom Data Sets
+
+1.  Download a `WZ2008-20XX-XX-XX-Classification_(complete).xml` file
+
+    1.  Visit [klassifikationsserver.de/klassService/index.jsp?variant=wz2008](https://klassifikationsserver.de/klassService/index.jsp?variant=wz2008)
+
+    2.  Locate the `ZIP` download in the download matrix at position
+
+        ```
+        ("Klassifikation komplett", "XML (Claset)")
+        ```
+
+    3. Extract the downloaded `ZIP` file
+
+2.  Use the factory to build a `WzClassificationInterface` object
+    based upon the downloaded XML file
+
+    ```php
+    use Rayne\wz2008\Graph\Factory\WzClassificationFactory;
+    use Rayne\wz2008\Graph\WzClassificationInterface;
+
+    /**
+    * @var WzClassificationInterface $classification
+    */
+
+    $classification = WzClassificationFactory::buildFromFile(
+        'WZ2008-2016-07-29-Classification_(complete).xml');
+    ```
