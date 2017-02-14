@@ -170,7 +170,7 @@ class WzItem implements WzItemInterface
 
         $result = [];
 
-        $queue = new SplQueue();
+        $queue = new SplQueue;
         $queue->enqueue($this);
 
         while (!$queue->isEmpty()) {

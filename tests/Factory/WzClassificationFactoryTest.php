@@ -11,6 +11,7 @@ namespace Rayne\wz2008\Graph\Factory;
 
 use InvalidArgumentException;
 use Rayne\wz2008\Graph\Test\AssetTestCase;
+use Rayne\wz2008\Graph\WzClassificationInterface;
 use Rayne\wz2008\Graph\WzItemInterface;
 
 class WzClassificationFactoryTest extends AssetTestCase
@@ -40,7 +41,9 @@ class WzClassificationFactoryTest extends AssetTestCase
 
     public function testDefaultClassification()
     {
-        WzClassificationFactory::build();
+        $this->assertInstanceOf(
+            WzClassificationInterface::class,
+            WzClassificationFactory::build());
     }
 
     public function testDefaultClassification_Count()
