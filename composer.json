@@ -12,6 +12,11 @@
   "description": "Parses the \"Classification of Economic Activities\" (wz2008) issued by the Statistisches Bundesamt to build multiple hierarchically structured trees.",
   "keywords": [
     "wz2008",
+    "wirtschaftszweige",
+    "nace",
+    "naics",
+    "isic",
+    "statistisches-bundesamt",
     "graph",
     "tree"
   ],
