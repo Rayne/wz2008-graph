@@ -7,6 +7,16 @@ This project adheres to [Semantic Versioning](http://semver.org).
 
 No notable changes.
 
+## [1.0.1] - 2017-02-20
+
+This patch release updates the tags of the
+[`Packagist`](https://packagist.org/packages/rayne/wz2008-graph)
+repository.
+
+### Changed
+
+* Updated `Composer` tags
+
 ## [1.0.0] - 2017-02-14
 
 No notable changes.
@@ -52,6 +62,7 @@ but also streamlines the API and removes feature creep.
 
 Initial release.
 
-[Unreleased]: https://github.com/Rayne/wz2008-graph/compare/1.0.0-rc2...HEAD
+[Unreleased]: https://github.com/Rayne/wz2008-graph/compare/1.0.1...HEAD
+[1.0.1]: https://github.com/Rayne/wz2008-graph/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/Rayne/wz2008-graph/compare/1.0.0-rc2...1.0.0
 [1.0.0-rc2]: https://github.com/Rayne/wz2008-graph/compare/1.0.0-rc1...1.0.0-rc2
