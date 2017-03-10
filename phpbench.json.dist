@@ -1,0 +1,19 @@
+{
+  "bootstrap": "vendor/autoload.php",
+  "path": "benchmarks",
+  "outputs": {
+    "rayne": {
+      "extends": "html",
+      "file": "build/benchmarks.html",
+      "title": "Rayne\\wz2008-graph Benchmarks"
+    }
+  },
+  "reports": {
+    "rayne": {
+      "extends": "aggregate",
+      "break": [
+        "groups"
+      ]
+    }
+  }
+}
