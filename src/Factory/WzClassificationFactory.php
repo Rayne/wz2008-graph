@@ -19,13 +19,17 @@ use SimpleXMLElement;
 class WzClassificationFactory
 {
     /**
+     * The supplied and default classification file.
+     */
+    const SUPPLIED_CLASSIFICATION_FILE = 'WZ2008-2017-04-25-Classification_(complete).xml';
+
+    /**
      * @return WzClassificationInterface The classification based upon the included `/assets/WZ2008*xml` file.
      * @throws InvalidArgumentException Unreadable or invalid file.
      */
     public static function build()
     {
-        return self::buildFromFile(
-            __DIR__ . '/../../assets/WZ2008-2016-07-29-Classification_(complete).xml');
+        return self::buildFromFile(__DIR__ . '/../../assets/' . self::SUPPLIED_CLASSIFICATION_FILE);
     }
 
     /**

@@ -10,6 +10,7 @@
 namespace Rayne\wz2008\Graph\Benchmark\Graph;
 
 use Rayne\wz2008\Graph\Benchmark\RandomItemAccessCase;
+use Rayne\wz2008\Graph\Factory\WzClassificationFactory;
 use SimpleXMLElement;
 
 class SimpleXmlRandomItemAccessBench extends RandomItemAccessCase
@@ -24,7 +25,7 @@ class SimpleXmlRandomItemAccessBench extends RandomItemAccessCase
      */
     public function __construct()
     {
-        $this->xml = simplexml_load_file($this->getAssetFile('WZ2008-2016-07-29-Classification_(complete).xml'));
+        $this->xml = simplexml_load_file($this->getAssetFile(WzClassificationFactory::SUPPLIED_CLASSIFICATION_FILE));
     }
 
     /**
