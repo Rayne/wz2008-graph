@@ -21,7 +21,7 @@ class WzClassificationFactory
     /**
      * The supplied and default classification file.
      */
-    const SUPPLIED_CLASSIFICATION_FILE = 'WZ2008-2017-04-25-Classification_(complete).xml';
+    const SUPPLIED_CLASSIFICATION_FILE = 'WZ2008-2018-06-29-Classification_(complete).xml';
 
     /**
      * @return WzClassificationInterface The classification based upon the included `/assets/WZ2008*xml` file.

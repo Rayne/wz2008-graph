@@ -7,6 +7,12 @@ This project adheres to [Semantic Versioning](http://semver.org).
 
 No notable changes.
 
+## [1.1.1] - 2018-07-16
+
+### Changed
+
+* Updated the supplied classification file to version `WZ2008-2018-06-29`
+
 ## [1.1.0] - 2017-05-19
 
 ### Added
@@ -65,14 +71,15 @@ but also streamlines the API and removes feature creep.
   `Rayne\wz2008\Graph\WzClassificationInterface`
 * `Rayne\wz2008\Graph\Parser\CompleteClassificationXml` in favor of
   `Rayne\wz2008\Graph\Factory\WzClassificationFactory`
-* `Rayne\wz2008\Graph\Parser\CompleteClassificationXmlFile.php` in favor of
+* `Rayne\wz2008\Graph\Parser\CompleteClassificationXmlFile` in favor of
   `Rayne\wz2008\Graph\Factory\WzClassificationFactory`
 
 ## 1.0.0-rc1 - 2017-02-05
 
 Initial release.
 
-[Unreleased]: https://github.com/Rayne/wz2008-graph/compare/1.1.0...HEAD
+[Unreleased]: https://github.com/Rayne/wz2008-graph/compare/1.1.1...HEAD
+[1.1.1]: https://github.com/Rayne/wz2008-graph/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/Rayne/wz2008-graph/compare/1.0.1...1.1.0
 [1.0.1]: https://github.com/Rayne/wz2008-graph/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/Rayne/wz2008-graph/compare/1.0.0-rc2...1.0.0
