@@ -5,7 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org).
 
 ## [Unreleased]
 
-No notable changes.
+### Changed
+
+* Updated the supplied classification file to version `WZ2008-2018-09-04`
 
 ## [1.1.1] - 2018-07-16
 
