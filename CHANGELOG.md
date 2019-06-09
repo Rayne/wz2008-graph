@@ -7,6 +7,12 @@ This project adheres to [Semantic Versioning](http://semver.org).
 
 No notable changes.
 
+## [1.1.3] - 2019-06-09
+
+### Changed
+
+* Updated the supplied classification file to version `WZ2008-2019-05-31`
+
 ## [1.1.2] - 2018-10-08
 
 ### Changed
@@ -84,7 +90,8 @@ but also streamlines the API and removes feature creep.
 
 Initial release.
 
-[Unreleased]: https://github.com/Rayne/wz2008-graph/compare/1.1.2...HEAD
+[Unreleased]: https://github.com/Rayne/wz2008-graph/compare/1.1.3...HEAD
+[1.1.3]: https://github.com/Rayne/wz2008-graph/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/Rayne/wz2008-graph/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/Rayne/wz2008-graph/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/Rayne/wz2008-graph/compare/1.0.1...1.1.0
