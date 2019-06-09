@@ -15,7 +15,25 @@ from flat file structures with implicit hierarchy.
 
 ![Rayne/wz2008-graph builds a tree structure](./assets/cover-image.png "Rayne/wz2008-graph builds a tree structure")
 
-([English documentation below.](#setup))
+## Contents
+
+- [Paketbeschreibung](#paketbeschreibung-german)
+- [Dependencies](#dependencies)
+  - [Production](#production)
+  - [Development](#development)
+- [Licence](#licence)
+- [Setup](#setup)
+- [Tests](#tests)
+- [Usage](#usage)
+  - [Search WzItem by ID](#search-wzitem-by-id)
+  - [Traverse WzItems](#traverse-wzitems)
+  - [Traverse Parents](#traverse-parents)
+  - [Traverse Children](#traverse-children)
+  - [Filter WzItems by Level](#filter-wzitems-by-level)
+  - [Get translated Labels](#get-translated-labels)
+  - [Get WzItem ID](#get-wzitem-id)
+  - [Get WzItem Level](#get-wzitem-level)
+- [Custom Data Sets](#custom-data-sets)
 
 ## Paketbeschreibung (German)
 
