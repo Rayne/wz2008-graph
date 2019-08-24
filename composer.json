@@ -28,11 +28,17 @@
     "ext-simplexml": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "^5.0|^7.0",
-    "phpbench/phpbench": "^0.13.0"
+    "friendsofphp/php-cs-fixer": "^2.15",
+    "phpbench/phpbench": "^0.16.9",
+    "phpunit/phpunit": "^5.0|^7.0"
   },
   "support": {
     "issues": "https://github.com/rayne/wz2008-graph/issues",
     "source": "https://github.com/rayne/wz2008-graph"
+  },
+  "scripts": {
+    "bench": "phpbench run",
+    "format": "php-cs-fixer fix",
+    "test": "phpunit"
   }
 }
