@@ -23,6 +23,7 @@ from flat file structures with implicit hierarchy.
   - [Development](#development)
 - [Licence](#licence)
 - [Setup](#setup)
+- [Benchmarks](#benchmarks)
 - [Tests](#tests)
 - [Usage](#usage)
   - [Search WzItem by ID](#search-wzitem-by-id)
@@ -90,6 +91,16 @@ composer require rayne/wz2008-graph
 * Clone the repository (see the [Tests](#tests) chapter)
 * Download a [zipped release](https://github.com/Rayne/wz2008-graph/releases)
 
+## Benchmarks
+
+It is recommended to call the `phpbench` program directly
+instead of using the provided `composer bench` script.
+The latter will kill the benchmark after five minutes.
+
+```bash
+./vendor/bin/phpbench run
+```
+
 ## Tests
 
 1.  Clone the repository
@@ -101,13 +112,13 @@ composer require rayne/wz2008-graph
 2.  Install the development dependencies
 
     ```bash
-    composer install --dev
+    composer install --dev --prefer-dist
     ```
 
 3.  Run the tests
 
     ```bash
-    ./vendor/bin/phpunit
+    composer test
     ```
 
 ## Usage
