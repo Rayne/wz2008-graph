@@ -7,6 +7,20 @@ This project adheres to [Semantic Versioning](http://semver.org).
 
 No notable changes.
 
+## [1.1.4] - 2019-06-24
+
+### Added
+
+* Added `composer` scripts for running the benchmark,
+  formatting the source code and testing the library
+
+* Added `composer bench`, `composer format` and `composer test` shortcuts
+  for running benchmarks, formatting source code and running tests
+
+### Changed
+
+* Updated the supplied classification file to version `WZ2008-2019-07-31`
+
 ## [1.1.3] - 2019-06-09
 
 ### Changed
@@ -90,7 +104,8 @@ but also streamlines the API and removes feature creep.
 
 Initial release.
 
-[Unreleased]: https://github.com/Rayne/wz2008-graph/compare/1.1.3...HEAD
+[Unreleased]: https://github.com/Rayne/wz2008-graph/compare/1.1.4...HEAD
+[1.1.4]: https://github.com/Rayne/wz2008-graph/compare/1.1.3...1.1.4
 [1.1.3]: https://github.com/Rayne/wz2008-graph/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/Rayne/wz2008-graph/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/Rayne/wz2008-graph/compare/1.1.0...1.1.1
