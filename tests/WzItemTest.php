@@ -109,20 +109,23 @@ class WzItemTest extends TestCase
         $this->assertSame(
             $map['01.11'],
             $map['01.11.0']
-                ->getParent());
+                ->getParent()
+        );
 
         $this->assertSame(
             $map['01.1'],
             $map['01.11.0']
                 ->getParent()
-                ->getParent());
+                ->getParent()
+        );
 
         $this->assertSame(
             $map['01'],
             $map['01.11.0']
                 ->getParent()
                 ->getParent()
-                ->getParent());
+                ->getParent()
+        );
 
         $this->assertSame(
             $map['A'],
@@ -130,7 +133,8 @@ class WzItemTest extends TestCase
                 ->getParent()
                 ->getParent()
                 ->getParent()
-                ->getParent());
+                ->getParent()
+        );
     }
 
     /**
@@ -153,27 +157,31 @@ class WzItemTest extends TestCase
             [
                 $map['01'],
             ],
-            $map['A']->getChildrenByLevel(2));
+            $map['A']->getChildrenByLevel(2)
+        );
 
         $this->assertSame(
             [
                 $map['01.1'],
             ],
-            $map['A']->getChildrenByLevel(3));
+            $map['A']->getChildrenByLevel(3)
+        );
 
         $this->assertSame(
             [
                 $map['01.11'],
                 $map['01.12'],
             ],
-            $map['A']->getChildrenByLevel(4));
+            $map['A']->getChildrenByLevel(4)
+        );
 
         $this->assertSame(
             [
                 $map['01.11.0'],
                 $map['01.12.0'],
             ],
-            $map['A']->getChildrenByLevel(5));
+            $map['A']->getChildrenByLevel(5)
+        );
     }
 
     public function testChildrenOutOfBounds()
@@ -263,7 +271,8 @@ class WzItemTest extends TestCase
         } catch (InvalidArgumentException $e) {
             $this->assertSame(
                 'Unsupported language code `fr`. Supported codes: `de,en`.',
-                $e->getMessage());
+                $e->getMessage()
+            );
         }
     }
 
@@ -300,7 +309,8 @@ class WzItemTest extends TestCase
         } catch (InvalidParentException $e) {
             $this->assertSame(
                 'The parent of `P` is invalid. Expected `P` but got ``.',
-                $e->getMessage());
+                $e->getMessage()
+            );
         }
 
         try {
@@ -309,7 +319,8 @@ class WzItemTest extends TestCase
         } catch (InvalidParentException $e) {
             $this->assertSame(
                 'The parent of `B` is invalid. Expected `A` but got `P`.',
-                $e->getMessage());
+                $e->getMessage()
+            );
         }
     }
 }

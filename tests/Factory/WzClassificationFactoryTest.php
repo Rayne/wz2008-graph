@@ -43,7 +43,8 @@ class WzClassificationFactoryTest extends AssetTestCase
     {
         $this->assertInstanceOf(
             WzClassificationInterface::class,
-            WzClassificationFactory::build());
+            WzClassificationFactory::build()
+        );
     }
 
     public function testDefaultClassification_Count()
@@ -92,7 +93,8 @@ class WzClassificationFactoryTest extends AssetTestCase
 
         $this->assertSame(
             $item->getChildren(),
-            $item->getChildrenByLevel($item::LEVEL_SUBCLASS));
+            $item->getChildrenByLevel($item::LEVEL_SUBCLASS)
+        );
 
         $this->assertSame('74.10.1', $item->getChildren()[0]->getId());
         $this->assertSame('74.10.2', $item->getChildren()[1]->getId());
@@ -125,7 +127,8 @@ class WzClassificationFactoryTest extends AssetTestCase
         $this->assertSame(4, $parent->getLevel());
         $this->assertSame(
             'Ateliers für Textil-, Schmuck-, Grafik- u. ä. Design',
-            $parent->getLabel('de'));
+            $parent->getLabel('de')
+        );
 
         $parent = $item->getParentByLevel(WzItemInterface::LEVEL_GROUP);
 
@@ -133,7 +136,8 @@ class WzClassificationFactoryTest extends AssetTestCase
         $this->assertSame(3, $parent->getLevel());
         $this->assertSame(
             'Ateliers für Textil-, Schmuck-, Grafik- u. ä. Design',
-            $parent->getLabel('de'));
+            $parent->getLabel('de')
+        );
 
         $parent = $item->getParentByLevel(WzItemInterface::LEVEL_DIVISION);
 
@@ -141,7 +145,8 @@ class WzClassificationFactoryTest extends AssetTestCase
         $this->assertSame(2, $parent->getLevel());
         $this->assertSame(
             'Sonstige freiberufliche, wissenschaftliche und technische Tätigkeiten',
-            $parent->getLabel('de'));
+            $parent->getLabel('de')
+        );
 
         $parent = $item->getParentByLevel(WzItemInterface::LEVEL_SECTION);
 
@@ -149,6 +154,7 @@ class WzClassificationFactoryTest extends AssetTestCase
         $this->assertSame(1, $parent->getLevel());
         $this->assertSame(
             'Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen',
-            $parent->getLabel('de'));
+            $parent->getLabel('de')
+        );
     }
 }

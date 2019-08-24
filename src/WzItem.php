@@ -81,7 +81,8 @@ class WzItem implements WzItemInterface
         throw new InvalidArgumentException(sprintf(
             'Unsupported language code `%s`. Supported codes: `%s`.',
             $langCode,
-            implode(',', array_keys($this->labels))));
+            implode(',', array_keys($this->labels))
+        ));
     }
 
     /**
@@ -140,7 +141,8 @@ class WzItem implements WzItemInterface
                 "The parent of `%s` is invalid. Expected `%s` but got `%s`.",
                 $child->getId(),
                 $this->getId(),
-                $child->getParent() ? $child->getParent()->getId() : ''));
+                $child->getParent() ? $child->getParent()->getId() : ''
+            ));
         }
 
         $this->children[] = $child;

@@ -1,13 +1,14 @@
 <?php
 
-$finder = Symfony\CS\Finder\DefaultFinder::create()
+$finder = PhpCsFixer\Finder::create()
     ->in([
-        __DIR__ . DIRECTORY_SEPARATOR . 'benchmarks',
-        __DIR__ . DIRECTORY_SEPARATOR . 'src',
-        __DIR__ . DIRECTORY_SEPARATOR . 'tests',
+        __DIR__ . '/src',
+        __DIR__ . '/tests',
     ]);
 
-return Symfony\CS\Config\Config::create()
-    ->level(\Symfony\CS\FixerInterface::PSR2_LEVEL)
-    ->fixers(['short_array_syntax'])
-    ->finder($finder);
+return PhpCsFixer\Config::create()
+    ->setRules([
+        '@PSR2' => true,
+        'array_syntax' => ['syntax' => 'short'],
+    ])
+    ->setFinder($finder);

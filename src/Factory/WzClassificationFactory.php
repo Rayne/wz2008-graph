@@ -43,7 +43,8 @@ class WzClassificationFactory
 
         if (!$xml) {
             throw new InvalidArgumentException(
-                sprintf("Invalid XML file `%s`.", $xmlFile));
+                sprintf("Invalid XML file `%s`.", $xmlFile)
+            );
         }
 
         return self::buildFromXml($xml);
@@ -87,7 +88,8 @@ class WzClassificationFactory
                 $itemId,
                 self::buildLabels($xmlItem),
                 $itemLevel,
-                $parent);
+                $parent
+            );
 
             $items[] = $current;
             $levels[$itemLevel] = $current;

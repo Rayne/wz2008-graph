@@ -28,7 +28,8 @@ class WzClassification implements WzClassificationInterface
             if (!$item instanceof WzItemInterface) {
                 throw new InvalidArgumentException(sprintf(
                     'Only `%s` objects are allowed.',
-                    WzItemInterface::class));
+                    WzItemInterface::class
+                ));
             }
 
             $this->items[$item->getId()] = $item;
@@ -62,7 +63,9 @@ class WzClassification implements WzClassificationInterface
                 $this->items,
                 function (WzItemInterface $item) use ($level) {
                     return $item->getLevel() == $level;
-                }));
+                }
+            )
+        );
     }
 
     /**

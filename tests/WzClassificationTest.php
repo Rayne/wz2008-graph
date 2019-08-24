@@ -68,7 +68,8 @@ class WzClassificationTest extends TestCase
         } catch (InvalidArgumentException $e) {
             $this->assertSame(
                 sprintf('Only `%s` objects are allowed.', WzItemInterface::class),
-                $e->getMessage());
+                $e->getMessage()
+            );
         }
     }
 }
