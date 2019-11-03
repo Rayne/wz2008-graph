@@ -5,7 +5,7 @@ checks:
     php: true
 tools:
     external_code_coverage:
-        runs: 3
+        runs: 5
     php_code_sniffer:
         config:
             standard: "PSR2"
