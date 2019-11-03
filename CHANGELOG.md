@@ -7,13 +7,13 @@ This project adheres to [Semantic Versioning](http://semver.org).
 
 No notable changes.
 
-## [1.1.5] - 2019-10-22
+## [1.1.5] - 2019-11-03
 
 ### Changed
 
 * Updated the supplied classification file to version `WZ2008-2019-10-22`
 
-## [1.1.4] - 2019-06-24
+## [1.1.4] - 2019-07-24
 
 ### Added
 
